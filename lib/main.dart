@@ -24,6 +24,13 @@ class MyApp extends StatelessWidget {
             return babies.getBabies();
           },
           ),
+          StreamProvider<String> (initialData: 'Bark 0 times', 
+          create: (context) {
+            final int dogAge = context.read<Dog>().age;
+            final babies = Babies(age: dogAge * 2);
+            return babies.bark();
+          }
+          ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -100,6 +107,8 @@ class Age extends StatelessWidget {
              Text('- age: ${context.select<Dog, int>((Dog dog) => dog.age)}', style: const TextStyle(fontSize: 20.0,),),
              const SizedBox(height: 5.0,),
              Text('number of babies: ${context.watch<int>()}', style:  TextStyle(fontSize: 20.0,),),
+             const SizedBox(height: 5.0,),
+             Text('${context.watch<String>()}', style: TextStyle(fontSize: 20.0,),),
              const SizedBox(height: 5.0,),
               ElevatedButton(onPressed: () => context.read<Dog>().grow(), 
               child: const Text('Grow', style:  TextStyle(fontSize: 20.0,),),),

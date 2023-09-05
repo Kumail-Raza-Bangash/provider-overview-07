@@ -4,7 +4,7 @@ class Babies{
   Babies({required this.age}); 
 
   Future<int> getBabies() async{
-    await Future.delayed(Duration(seconds: 4));
+    await Future.delayed(Duration(seconds: 3));
 
     if(age>1 && age <5){
       return 4;
